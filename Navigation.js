@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "./screens/Home/index.jsx";
-import TP1Stack from "./screens/Tabs/TP1Stack/index.jsx";
+import TP1Stack from "./screens/Tabs/TP1Stack.jsx";
 
 const tab = createBottomTabNavigator();
 
