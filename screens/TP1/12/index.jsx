@@ -1,18 +1,14 @@
-import { View } from "react-native";
+import { StyleSheet, TextInput, View } from "react-native";
 
 export default function App() {
   return (
     <View>
-      <TextInput
-        style={styles.input}
-        placeholder="Sua data de nascimento"
-        keyboardType=""
-        value={normalizedValue}
-        onChangeText={(value) => setInputValue(value)}
-      />
+      <TextInput style={styles.input} placeholder="Sua data de nascimento" />
     </View>
   );
 }
+
+const styles = StyleSheet.create({});
 
 function calculateAge(birthDate) {
   const now = new Date();
