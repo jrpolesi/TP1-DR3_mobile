@@ -10,7 +10,7 @@ export default function App() {
   return (
     <View>
       <Text>
-        Olá, {name}! Agora são {currentHour}”
+        Olá, {name}! Agora são {currentHour}
       </Text>
     </View>
   );
