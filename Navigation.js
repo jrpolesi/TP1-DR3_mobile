@@ -1,10 +1,9 @@
-import { NavigationContainer} from "@react-navigation/native"
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-import Home from "./screens/Home";
-import TP1Stack from "./screens/Tabs/TP1Stack";
-import TP1 from "./screens/TP1";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Home from "./screens/Home/index.jsx";
+import TP1Stack from "./screens/Tabs/TP1Stack/index.jsx";
 
-const tab = createBottomTabNavigator()
+const tab = createBottomTabNavigator();
 
 function TabGroup() {
   return (
@@ -18,7 +17,7 @@ function TabGroup() {
 export default function Navigation() {
   return (
     <NavigationContainer>
-        <TabGroup />
+      <TabGroup />
     </NavigationContainer>
   );
 }
