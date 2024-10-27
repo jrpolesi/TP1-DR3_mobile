@@ -14,6 +14,7 @@ export default function App() {
         style={styles.input}
         placeholder="Digite um texto"
         value={normalizedValue}
+        autoCapitalize="none"
         onChangeText={(value) => setInputValue(value)}
       />
 
