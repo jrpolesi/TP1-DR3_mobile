@@ -1,18 +1,71 @@
-import { StyleSheet, TextInput, View } from "react-native";
+import { useState } from "react";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 
 export default function App() {
+  const [birthDatetime, setBirthDatetime] = useState("");
+
+  const { years, months, days, hours, minutes } = birthDatetime.length
+    ? calculateAge(birthDatetime)
+    : {};
+
+  const isInvalidDateTime =
+    birthDatetime.length &&
+    !/^\d{2}\/\d{2}\/\d{4} \d{2}:\d{2}$/.test(birthDatetime);
+
   return (
-    <View>
-      <TextInput style={styles.input} placeholder="Sua data de nascimento" />
+    <View style={styles.container}>
+      <TextInput
+        style={styles.input}
+        placeholder="00/00/0000 00:00"
+        value={birthDatetime}
+        onChangeText={(value) => setBirthDatetime(value)}
+      />
+
+      {birthDatetime.length ? (
+        isInvalidDateTime ? (
+          <Text style={styles.text}>
+            Formato inválido, o formato deve ser "00/00/0000 00:00"
+          </Text>
+        ) : (
+          <Text style={styles.text}>
+            Você tem {years} anos, {months} meses, {days} dias, {hours} horas e{" "}
+            {minutes} minutos.
+          </Text>
+        )
+      ) : (
+        <Text style={styles.text}>Aguardando...</Text>
+      )}
     </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    gap: 30,
+    margin: 20,
+  },
+  input: {
+    justifyContent: "center",
+    padding: 10,
+    borderRadius: 3,
+    borderWidth: 2,
+    width: "100%",
+    maxWidth: 200,
+  },
+  text: {
+    textAlign: "center",
+  },
+});
 
 function calculateAge(birthDate) {
+  const formattedBirthDate = birthDate.replace(
+    /(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2})/,
+    "$3-$2-$1T$4:$5:00"
+  );
+
   const now = new Date();
-  const birth = new Date(birthDate);
+  const birth = new Date(formattedBirthDate);
 
   let years = now.getFullYear() - birth.getFullYear();
   let months = now.getMonth() - birth.getMonth();
